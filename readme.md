@@ -11,9 +11,7 @@
 * Open a cmd prompt/terminal and type in **npm build**
 
 ## To Do
-to run:
-install live server, hit go live
-build
+update assets
+check audio
+check build
 check netlify
-
-update to use latest phaser
