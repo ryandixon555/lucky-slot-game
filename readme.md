@@ -11,6 +11,7 @@
 * Open a cmd prompt/terminal and type in **npm build**
 
 ## To Do
+webpack/require
 update assets
 check audio
 check build

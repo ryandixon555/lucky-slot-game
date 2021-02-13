@@ -10,10 +10,9 @@
     "@babel/preset-env": "^7.12.13"
   },
   "scripts": {
-    "requirejs": "node r.js -o build.js",
     "babel": "node node_modules/babel-cli/bin/babel.js src/main-built.js --out-file main-built.js",
     "babelfix": "node node_modules/replace/bin/replace.js \\)\\(undefined\\) )(window) main-built.js",
-    "build": "npm audit fix && npm run requirejs && npm run babel && npm run babelfix"
+    "build": "npm audit fix && npm run babel && npm run babelfix"
   },
   "dependencies": {
     "babel": "^6.23.0",
@@ -22,8 +21,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-es2015-without-strict": "0.0.4",
     "node": "^15.7.0",
-    "replace": "^1.0.0",
-    "requirejs": "^2.3.6"
+    "replace": "^1.0.0"
   },
   "author": "Ryan Dixon",
   "license": "MIT"
