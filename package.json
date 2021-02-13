@@ -13,7 +13,7 @@
     "requirejs": "node r.js -o build.js",
     "babel": "node node_modules/babel-cli/bin/babel.js src/main-built.js --out-file main-built.js",
     "babelfix": "node node_modules/replace/bin/replace.js \\)\\(undefined\\) )(window) main-built.js",
-    "build": "npm run requirejs && npm run babel && npm run babelfix"
+    "build": "npm audit fix && npm run requirejs && npm run babel && npm run babelfix"
   },
   "dependencies": {
     "babel": "^6.23.0",
