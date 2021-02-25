@@ -33,6 +33,9 @@
 			this.add.tileSprite(0,0,config.width,config.height,'tilebg').setOrigin(0,0);
 			this.add.sprite(config.width/2,config.height/2,'bg');
 			let m = this.add.sprite(640+fix.x,330,'machine');
+			m.scale = 1;
+			m.alpha = 0;
+			
 			
 			this.add.tileSprite(0,0,config.width,67,'header').setOrigin(0,0);
 			this.add.sprite(config.width-400,0,'separate').setOrigin(0);
