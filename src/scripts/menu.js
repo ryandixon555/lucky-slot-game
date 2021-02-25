@@ -1,3 +1,5 @@
+import Phaser from 'phaser';
+
 let  game_music;
 
 class Menu extends Phaser.Scene {
