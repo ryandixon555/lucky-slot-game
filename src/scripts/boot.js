@@ -1,5 +1,3 @@
-import Phaser from 'phaser';
-
 class Boot extends Phaser.Scene {
 	//Load initial assets
 	//To show it on preload scene

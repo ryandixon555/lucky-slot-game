@@ -1,4 +1,3 @@
-import Phaser from 'phaser';
 
 	let  game_music;
 
