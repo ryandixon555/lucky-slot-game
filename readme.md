@@ -9,7 +9,3 @@
 
 ## To Build:
 * Open a cmd prompt/terminal and type in **npm build**
-
-## To Do
-check build
-check netlify
