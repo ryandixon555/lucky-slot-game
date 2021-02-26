@@ -7,5 +7,5 @@
 * Make sure you have live server installed
 * Hit 'Go Live' on the src level
 
-## To Build:
-* Open a cmd prompt/terminal and type in **npm build**
+## To Play:
+https://ryandixon555.github.io/lucky-slot-game/src/index.html
