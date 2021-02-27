@@ -480,7 +480,7 @@
 						emitZone: { type: 'edge', source: rect, quantity: 60 },
 						blendMode: 'ADD',
 						emitCallback: function(){
-							console.log('hhh')
+							
 						}
 					});
 				}
