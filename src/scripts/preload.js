@@ -13,14 +13,14 @@ class Load extends Phaser.Scene {
 	preload(){
 		this.add.tileSprite(0,0,game_config.width,game_config.height,'tilebg').setOrigin(0,0);
 		this.add.sprite(game_config.width/2,game_config.height/2,'bg_menu');
-		this.anims.create({
-		    key: 'title',
-		    frames: this.anims.generateFrameNumbers('game_title2'),
-		    frameRate: 5,
-		    repeat: -1,
-		});
-		let title = this.add.sprite(800, 215, 'game_title2');
-		title.play('title');
+		// this.anims.create({
+		//     key: 'title',
+		//     frames: this.anims.generateFrameNumbers('game_title2'),
+		//     frameRate: 5,
+		//     repeat: -1,
+		// });
+		// let title = this.add.sprite(800, 215, 'game_title2');
+		// title.play('title');
 		let bar = this.add.rectangle(game_config.width/2, 500, 600, 20);
 		bar.setStrokeStyle(4, 0xffffff);
 		bar.alpha = 0.7;
@@ -32,7 +32,7 @@ class Load extends Phaser.Scene {
 		this.load.on('complete', ()=>{
 			bar.destroy();
 			progress.destroy();
-			let o = this.draw_button(game_config.width/2, 510, 'start', this);
+			let o = this.draw_button(game_config.width/2, 300, 'start', this);
 			this.tweens.add({
 				targets: o,
 				scaleX: 0.9,

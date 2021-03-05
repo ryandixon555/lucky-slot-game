@@ -71,24 +71,24 @@ class Menu extends Phaser.Scene {
 		let self = this;
 		this.add.tileSprite(0,0,game_config.width,game_config.height,'tilebg').setOrigin(0,0);
 		this.add.sprite(game_config.width/2,game_config.height/2,'bg_menu');
-		this.anims.create({
-		    key: 'title',
-		    frames: this.anims.generateFrameNumbers('game_title2'),
-		    frameRate: 5,
-		    repeat: -1,
-		});
-		let title = this.add.sprite(800, 215, 'game_title2');
-		title.play('title');
-		this.tweens.add({
-			targets: title,
-			scaleX: 0.9,
-			scaleY: 0.9,
-			yoyo: true,
-			duration: 700,
-			repeat: -1,
-			ease: 'Sine.easeInOut',
-		});
-		this.draw_button(800, 476, 'play', this);
+		// this.anims.create({
+		//     key: 'title',
+		//     frames: this.anims.generateFrameNumbers('game_title2'),
+		//     frameRate: 5,
+		//     repeat: -1,
+		// });
+		// let title = this.add.sprite(800, 215, 'game_title2');
+		// title.play('title');
+		// this.tweens.add({
+		// 	targets: title,
+		// 	scaleX: 0.9,
+		// 	scaleY: 0.9,
+		// 	yoyo: true,
+		// 	duration: 700,
+		// 	repeat: -1,
+		// 	ease: 'Sine.easeInOut',
+		// });
+		this.draw_button(800, 250, 'play', this);
 		//draw_button(685, 585, 'about', this);
 		//let b_music = draw_button(889, 585, 'menu_music', this);
 		//let b_sound = draw_button(1019, 585, 'menu_sound', this);
