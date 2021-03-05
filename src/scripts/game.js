@@ -37,12 +37,12 @@
 			m.alpha = 0;
 			
 			
-			this.add.tileSprite(0,0,config.width,67,'header').setOrigin(0,0);
-			this.add.sprite(config.width-400,0,'separate').setOrigin(0);
-			this.add.sprite(400,0,'separate').setOrigin(0);
-			this.add.sprite(config.width-220,0,'separate').setOrigin(0);
-			this.add.sprite(220,0,'separate').setOrigin(0);
-			this.add.tileSprite(0,config.height,config.width,100,'footer').setOrigin(0,1);
+			//this.add.tileSprite(0,0,config.width,67,'header').setOrigin(0,0);
+			//this.add.sprite(config.width-400,0,'separate').setOrigin(0);
+			//this.add.sprite(400,0,'separate').setOrigin(0);
+			//this.add.sprite(config.width-220,0,'separate').setOrigin(0);
+			//this.add.sprite(220,0,'separate').setOrigin(0);
+			//this.add.tileSprite(0,config.height,config.width,100,'footer').setOrigin(0,1);
 			
 			// UI
 			let _m1 = this.add.sprite(419+fix.x, 35,'money_bar');
@@ -50,15 +50,18 @@
 			let _m3 = this.add.sprite(480+fix.x, 670,'bet_bar');
 			let _m4 = this.add.sprite(221+fix.x, 670,'lines_bar');
 			let b_spin = draw_button(1110+fix.x, 670,'spin',this);
+			
+			//draw_button(1110+fix.x, 670,'spin',this);
 			//Draw buttons
-			let b_max = draw_button(920+fix.x, 670,'max',this);
+			//let b_max = draw_button(920+fix.x, 670,'max',this);
 			let b_payout = draw_button(950+fix.x,35,'payout',this);
 			let b_plusb = draw_button(561+fix.x, 668,'plus_bet',this);
 			let b_minusb = draw_button(399+fix.x, 669,'minus_bet',this);
-			let b_sound = draw_button(1100+fix.x, 35,'sound',this);
-			let b_music = draw_button(1170+fix.x, 35,'music',this);
-			draw_button(120+fix.x, 35,'back',this);
-			draw_button(200+fix.x, 35,'full',this);
+			//let b_sound = draw_button(1100+fix.x, 35,'sound',this);
+			
+			//let b_music = draw_button(1170+fix.x, 35,'music',this);
+			//draw_button(120+fix.x, 35,'back',this);
+			//draw_button(200+fix.x, 35,'full',this);
 			//End button
 			if(!game_config.music){
 				b_music.setTexture('btn_music_off');
