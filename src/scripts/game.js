@@ -1,6 +1,8 @@
 
 	let  game_music;
 
+	import * as UI from './ui.js'
+
 	class Game extends Phaser.Scene {
 
 		constructor() {
@@ -36,45 +38,10 @@
 			m.scale = 1;
 			m.alpha = 0;
 			
+			let _this = this;
+
+			UI.initUI(_this)
 			
-			//this.add.tileSprite(0,0,config.width,67,'header').setOrigin(0,0);
-			//this.add.sprite(config.width-400,0,'separate').setOrigin(0);
-			//this.add.sprite(400,0,'separate').setOrigin(0);
-			//this.add.sprite(config.width-220,0,'separate').setOrigin(0);
-			//this.add.sprite(220,0,'separate').setOrigin(0);
-			//this.add.tileSprite(0,config.height,config.width,100,'footer').setOrigin(0,1);
-			
-			// UI
-			let _m1 = this.add.sprite(419+fix.x, 35,'money_bar');
-			let _m2 = this.add.sprite(735+fix.x, 670,'res_bar');
-			let _m3 = this.add.sprite(480+fix.x, 670,'bet_bar');
-			let _m4 = this.add.sprite(221+fix.x, 670,'lines_bar');
-			let b_spin = draw_button(1110+fix.x, 670,'spin',this);
-			
-			//draw_button(1110+fix.x, 670,'spin',this);
-			//Draw buttons
-			//let b_max = draw_button(920+fix.x, 670,'max',this);
-			let b_payout = draw_button(950+fix.x,35,'payout',this);
-			let b_plusb = draw_button(561+fix.x, 668,'plus_bet',this);
-			let b_minusb = draw_button(399+fix.x, 669,'minus_bet',this);
-			//let b_sound = draw_button(1100+fix.x, 35,'sound',this);
-			
-			//let b_music = draw_button(1170+fix.x, 35,'music',this);
-			//draw_button(120+fix.x, 35,'back',this);
-			//draw_button(200+fix.x, 35,'full',this);
-			//End button
-			if(!game_config.music){
-				b_music.setTexture('btn_music_off');
-			}
-			if(!game_config.sound){
-				b_music.setTexture('btn_sound_off');
-			}
-			//Draw text
-			let txt_cash = this.add.text(530+fix.x, 35, String(game_config.cur_cash), {fontFamily: 'bebas', fontSize: 30, align: 'right',color: '#FFFFFF'}).setOrigin(1, 0.5);
-			let txt_line = this.add.text(221+fix.x, 680, String(game_config.cur_payline), {fontFamily: 'bebas', fontSize: 30, align: 'center',color: '#FFFFFF'}).setOrigin(0.5);
-			let txt_bet = this.add.text(480+fix.x, 680, String(game_config.cur_bet), {fontFamily: 'bebas', fontSize: 30, align: 'center',color: '#FFFFFF'}).setOrigin(0.5);
-			let txt_win = this.add.text(820+fix.x, 682, '0', {fontFamily: 'bebas', fontSize: 30, align: 'right',color: '#FFFFFF'}).setOrigin(1,0.5);
-			let txt_total = this.add.text(820+fix.x, 656, String(total_bet), {fontFamily: 'bebas', fontSize: 30, align: 'right',color: '#FFFFFF'}).setOrigin(1,0.5);
 			//End text
 			let img_mask = this.add.sprite(m.x, 391, 'mask').setVisible(false);
 			let mask = new Phaser.Display.Masks.BitmapMask(this, img_mask);
@@ -115,8 +82,13 @@
 								} else if(obj.name === 'max'){
 									game_config.cur_payline = game_config.paylines.length;
 									game_config.cur_bet = game_config.bet_size[game_config.bet_size.length-1];
-									txt_bet.setText(String(game_config.cur_bet));
-									txt_line.setText(String(game_config.cur_payline));
+
+									//txt_bet.setText(String(game_config.cur_bet));
+
+									UI.updatetxtBet(String(game_config.cur_bet));
+									// txt_line.setText(String(game_config.cur_payline));
+									UI.updatetxtLine(String(game_config.cur_payline));
+
 									update_totalbet();
 									startGame();
 								} else if(obj.name === 'payout'){
@@ -129,7 +101,9 @@
 										game_config.bet_at = 0;
 									}
 									game_config.cur_bet = game_config.bet_size[game_config.bet_at];
-									txt_bet.setText(String(game_config.cur_bet));
+
+									//txt_bet.setText(String(game_config.cur_bet));
+									UI.updatetxtBet(String(game_config.cur_bet));
 									update_totalbet();
 								} else if(obj.name === 'minus_bet'){
 									play_sound('Button', self);
@@ -138,7 +112,9 @@
 										game_config.bet_at = game_config.bet_size.length-1;
 									}
 									game_config.cur_bet = game_config.bet_size[game_config.bet_at];
-									txt_bet.setText(String(game_config.cur_bet));
+
+									//txt_bet.setText(String(game_config.cur_bet));
+									UI.updatetxtBet(String(game_config.cur_bet));
 									update_totalbet();
 								} else if(obj.name === 'back'){
 									play_sound('click2', self);
@@ -188,7 +164,9 @@
 			function update_totalbet(){
 				total_bet = game_config.cur_bet*game_config.cur_payline;
 				total_bet = Math.round( total_bet * 10 ) / 10;
-				txt_total.setText(String(total_bet));
+				// txt_total.setText(String(total_bet));
+
+				UI.updatetxtTotal(String(total_bet));
 			}
 	
 	
@@ -449,9 +427,20 @@
 					val = 0;
 				}
 				val = Math.round( val * 10 ) / 10;
-				txt_win.setText(String(val));
+
+
+
+				//txt_win.setText(String(val));
+				UI.updatetxtWin(String(val));
+
+
+
+
 				game_config.cur_cash = Math.round( game_config.cur_cash * 10 ) / 10;
-				txt_cash.setText(String(game_config.cur_cash));
+
+				// txt_cash.setText(String(game_config.cur_cash));
+				UI.updatetxtCash(String(game_config.cur_cash));
+
 				localStorage.setItem("rf_lucky_slot", game_config.cur_cash);
 			}
 			function remove_duplicates(arr){
