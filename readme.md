@@ -9,13 +9,3 @@
 
 ## To Play:
 https://ryandixon555.github.io/lucky-slot-game/src/index.html
-
-## To Do:
-Split Out:
-- generate_result (engine)
-- show_particles
-- show_table/hide_table
-- show_win/win view
-- audio
-- asset view?
-- mobile portrait
