@@ -31,6 +31,7 @@
 			let lines = this.add.group();
 			let state = 'play';
 			let timer;
+			let inFreeSpins = false;
 			
 			this.add.tileSprite(0,0,config.width,config.height,'tilebg').setOrigin(0,0);
 			this.add.sprite(config.width/2,config.height/2,'bg');
@@ -41,6 +42,18 @@
 			let _this = this;
 
 			UI.initUI(_this)
+
+			// Free Spins
+			let winCounter = 0;
+			let winCounterText = this.add.text(450, 150, winCounter, {fontFamily: 'bebas', fontSize: 30, align: 'center', color: '#FFFFFF'}).setOrigin(1, 0.5);
+			winCounterText.setText("x3 to get free spins\nCurrent amount\n" + winCounter);
+
+			let freeSpinsIntro = this.add.text(1000, 150, 'You have won 3 free spins!', {fontFamily: 'bebas', fontSize: 30, align: 'center', color: '#FFFFFF'}).setOrigin(1, 0.5);
+			freeSpinsIntro.alpha = 0;
+
+			let freeSpinsCounterAmount = 3;
+			let freeSpinsCounter = this.add.text(1400, 150, 'Free Spins Remaining:\n' + freeSpinsCounterAmount, {fontFamily: 'bebas', fontSize: 30, align: 'center', color: '#FFFFFF'}).setOrigin(1, 0.5);
+			freeSpinsCounter.alpha = 0;
 			
 			//End text
 			let img_mask = this.add.sprite(m.x, 391, 'mask').setVisible(false);
@@ -83,13 +96,15 @@
 									game_config.cur_payline = game_config.paylines.length;
 									game_config.cur_bet = game_config.bet_size[game_config.bet_size.length-1];
 
-									//txt_bet.setText(String(game_config.cur_bet));
+									if (!inFreeSpins) 
+									{
+										UI.updatetxtBet(String(game_config.cur_bet));
+									
+										UI.updatetxtLine(String(game_config.cur_payline));
 
-									UI.updatetxtBet(String(game_config.cur_bet));
-									// txt_line.setText(String(game_config.cur_payline));
-									UI.updatetxtLine(String(game_config.cur_payline));
-
-									update_totalbet();
+										update_totalbet();
+									}
+									
 									startGame();
 								} else if(obj.name === 'payout'){
 									play_sound('click2', self);
@@ -102,7 +117,7 @@
 									}
 									game_config.cur_bet = game_config.bet_size[game_config.bet_at];
 
-									//txt_bet.setText(String(game_config.cur_bet));
+									
 									UI.updatetxtBet(String(game_config.cur_bet));
 									update_totalbet();
 								} else if(obj.name === 'minus_bet'){
@@ -113,7 +128,7 @@
 									}
 									game_config.cur_bet = game_config.bet_size[game_config.bet_at];
 
-									//txt_bet.setText(String(game_config.cur_bet));
+								
 									UI.updatetxtBet(String(game_config.cur_bet));
 									update_totalbet();
 								} else if(obj.name === 'back'){
@@ -208,6 +223,11 @@
 						clearInterval(timer);
 					}
 				}, spin_delay);
+
+				if (inFreeSpins)
+				{
+					startFreeSpins();
+				}
 			}
 			
 			function spin_start(obj){
@@ -398,18 +418,33 @@
 					
 				if(!check){
 					state = 'play';
+
 					show_particles(res);
+
 					if(win_value === 0){
 						play_sound('Slot Machine Bonus Lose', self);
 					}
+					else 
+					{
+						showWin();
+					}
+
+					if (inFreeSpins)
+					{
+						
+
+						freeSpinsGameEnd();
+					}
+					
+
 					update_cash(win_value*game_config.cur_bet);
 			
-					
 					if(win_value*game_config.cur_bet > 70){
+
 						if(win_value*game_config.cur_bet >= total_bet*4){
-							show_win('big_win');
+							show_big_win('big_win');
 						} else if(win_value*game_config.cur_bet >= total_bet*3){
-							show_win('you_win');
+							show_big_win('you_win');
 						}
 					}
 						
@@ -417,6 +452,7 @@
 					return win_value;
 				}
 			}
+
 			function update_cash(val){
 				if(val > 1){
 					play_sound('Get Coins', self);
@@ -428,21 +464,18 @@
 				}
 				val = Math.round( val * 10 ) / 10;
 
-
-
-				//txt_win.setText(String(val));
 				UI.updatetxtWin(String(val));
-
-
-
 
 				game_config.cur_cash = Math.round( game_config.cur_cash * 10 ) / 10;
 
-				// txt_cash.setText(String(game_config.cur_cash));
-				UI.updatetxtCash(String(game_config.cur_cash));
+				if (!inFreeSpins) 
+				{
+					UI.updatetxtCash(String(game_config.cur_cash));
+				}
 
 				localStorage.setItem("rf_lucky_slot", game_config.cur_cash);
 			}
+
 			function remove_duplicates(arr){
 				arr = arr.filter((p, index, self) =>
 				  index === self.findIndex((t) => (
@@ -536,8 +569,60 @@
 					}
 				});
 			}
+
+			function showWin()
+			{
+				if (!inFreeSpins) {
+					winCounter ++;
+					winCounterText.setText("x3 to get free spins\nCurrent amount\n" + winCounter);
+
+					freeSpinsCheck();
+				}
+				
+			}
+
+			function freeSpinsCheck() {
+				if (winCounter == 3)
+				{
+					inFreeSpins = true;
+
+					freeSpinsIntro.alpha = true;
+
+					winCounterText.alpha = 0;
+					winCounter = 0;
+					winCounterText.setText("x3 to get free spins\nCurrent amount\n" + winCounter);
+					
+					freeSpinsCounter.alpha = 1;
+					
+					startFreeSpins();
+				}
+			}
+
+			function startFreeSpins() {
+				
+				//startGame();
+
+				
+				freeSpinsCounter.setText("Free Spins Remaining:\n" + freeSpinsCounterAmount);
+
+				
+			}
+
+			function freeSpinsGameEnd()
+			{
+				
+				freeSpinsCounterAmount --;
+				if(freeSpinsCounterAmount == -1)
+				{
+					inFreeSpins = false;
+					freeSpinsIntro.alpha = false;
+					winCounterText.alpha = true;
+					freeSpinsCounter.alpha = false;
+					freeSpinsCounterAmount = 3;
+				}
+			}
 			
-			function show_win(e){
+			function show_big_win(e){
 				play_sound('Slot Machine Mega Win', self);
 				state = 'win';
 				let group = self.add.group();
