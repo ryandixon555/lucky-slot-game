@@ -1,5 +1,5 @@
 {
-  "name": "lucky_slot_machine",
+  "name": "Generic Slot Machine",
   "version": "1.0.0",
   "description": "A basic slot machine example",
   "main": "game.js",

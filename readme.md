@@ -1,4 +1,4 @@
-# Lucky Slot Machine
+# Generic Slot Machine
 
 ## To Install:
 * Open a cmd prompt/terminal and type in **npm i**
