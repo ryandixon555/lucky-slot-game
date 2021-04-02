@@ -8,8 +8,8 @@ export function initUI(_this) {
   
 
     let fix = {
-        x: game_config.width / 2,
-        y: game_config.height / 2,
+        x: game_config.width/2-game_config.main.width/2,
+        y: game_config.main.height/2,
     };
 
     let _m1 = _this.add.sprite(419+fix.x, 35,'money_bar');
