@@ -41,12 +41,13 @@
 			
 			let _this = this;
 
-			UI.initUI(_this)
+			UI.initUI(_this);
+			update_totalbet();
 
 			// Free Spins
 			let winCounter = 0;
-			let winCounterText = this.add.text(450, 150, winCounter, {fontFamily: 'bebas', fontSize: 30, align: 'center', color: '#FFFFFF'}).setOrigin(1, 0.5);
-			winCounterText.setText("x3 to get free spins\nCurrent amount\n" + winCounter);
+			let winCounterText = this.add.text(450, 150, winCounter, {fontFamily: 'bebas', fontSize: 32, align: 'center', color: '#FFFFFF'}).setOrigin(1, 0.5);
+			winCounterText.setText("x3 wins to get free spins\nCurrent amount\n" + winCounter);
 
 			let freeSpinsIntro = this.add.text(1000, 150, 'You have won 3 free spins!', {fontFamily: 'bebas', fontSize: 30, align: 'center', color: '#FFFFFF'}).setOrigin(1, 0.5);
 			freeSpinsIntro.alpha = 0;
