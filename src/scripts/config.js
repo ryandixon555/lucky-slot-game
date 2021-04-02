@@ -37,14 +37,11 @@ var game_config = {
 		[[2,0],[2,1],[1,2],[0,3],[0,4], 0xff33e0],
 		[[1,0],[2,1],[1,2],[0,3],[1,4], 0xff3369],
 	],
-	max_payline: 0,
 
-	
-	
+	max_payline: 0,
 	width: 1600,
 	height: 720
-	
-	
 }
+
 game_config.cur_bet = game_config.bet_size[game_config.bet_at];
 game_config.max_payline = game_config.paylines.length;
