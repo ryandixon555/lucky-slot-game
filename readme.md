@@ -9,3 +9,16 @@
 
 ## To Play:
 https://ryandixon555.github.io/lucky-slot-game/src/index.html
+
+## To DO:
+* npm
+* fix ui - kobiton
+* split out components
+* check audio
+* add infographic to play
+* amend start to say 'enable audio'
+* symbol win anims
+* lamp off non winning symbols
+* add title
+* total bet bug on init
+* portrait mode
