@@ -10,10 +10,10 @@ window.addEventListener("orientationchange", function() {
 function _rf_checkratio(){
 	let ratio = window.innerWidth/window.innerHeight;
 	
-    if(window.innerWidth <= 1024 && !rotate_shown) {
-    	rotate_shown = true;
-    	_rf_rotate('show');
-    }
+    // if(window.innerWidth <= 1024 && !rotate_shown) {
+    // 	rotate_shown = true;
+    // 	_rf_rotate('show');
+    // }
     // if(ratio > 1 && rotate_shown){
     // 	rotate_shown = false;
     // 	_rf_rotate('hide');
